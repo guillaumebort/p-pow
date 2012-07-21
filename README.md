@@ -1,8 +1,8 @@
 # P-Pow
 
-P-Pow (pronounce _/pi-pô/_ if you are french) makes [Pow](http://pow.cx) almost working with [Play framework](http://www.playframework.org) applications. It uses the Pow's *port proxying* feature to automatically register any Play application you run from the Play console, to its own *.dev* subdomain.
+P-Pow (pronounce _/pi-pô/_ if you are french) makes [Pow](http://pow.cx) almost working with [Play framework](http://www.playframework.org) applications. It uses the Pow's **port proxying** feature to automatically register any Play application you run from the Play console, to its own **.dev** subdomain.
 
-## First you need [Pow](http://pow.cx)
+## First you need [Pow](http://pow.cx) on MacOS
 
 It is ridiculously easy to install:
 
@@ -10,9 +10,9 @@ It is ridiculously easy to install:
 curl get.pow.cx | sh
 ```
 
-## Then install P-Pow for your Play app
+## Then install P-Pow for your Play application
 
-You need to add the *P-Pow sbt plugin* to your project build configuration. In `project/plugins.sbt` add the following lines to register the plugin:
+You need to add the **P-Pow sbt plugin** to your project build configuration. In `project/plugins.sbt` add the following lines to register the plugin:
 
 ```scala
 resolvers += "Guillaume Bort" at "http://guillaume.bort.fr/repository"
@@ -32,11 +32,11 @@ val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).s
 
 ## Now, see the magic
 
-Once you have *P-Pow* enabled for your application, it will be automatically registered on the *.dev* domain name when you `run` it. 
+Once you have **P-Pow** enabled for your application, it will be automatically registered on the **.dev** domain name when you `run` it. 
 
 For example:
 
-```bash
+```
        _            _ 
  _ __ | | __ _ _  _| |
 | '_ \| |/ _' | || |_|
@@ -75,7 +75,9 @@ playOnStopped <+= PPow.deregister("mycoolapp")
 Or this one could be useful if you have developers not using Pow:
 
 ```scala
-playDefaultPort := { if(file(System.getProperty("user.home") + "/.pow").exists) PPow.EPHEMERAL else 9000 },
+playDefaultPort := { 
+  if(file(System.getProperty("user.home") + "/.pow").exists) PPow.EPHEMERAL else 9000 
+},
 playOnStarted <+= name(PPow.register),
 playOnStopped <+= name(PPow.deregister)
 ```
