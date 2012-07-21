@@ -67,8 +67,11 @@ Using the previous settings, the Play application will start on any free ephemer
 Here is another possible configuration:
 
 ```scala
-playDefaultPort := 1234, // Fixes the port
-playOnStarted <+= PPow.register("mycoolapp"), // Fixes the hostname as http://mycoolapp.dev/
+// Fixes the port
+playDefaultPort := 1234, 
+
+// And fixes the hostname to http://mycoolapp.dev/
+playOnStarted <+= PPow.register("mycoolapp"), 
 playOnStopped <+= PPow.deregister("mycoolapp")
 ```
 
